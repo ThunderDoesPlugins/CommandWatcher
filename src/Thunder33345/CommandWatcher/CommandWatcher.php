@@ -39,17 +39,16 @@ class CommandWatcher extends PluginBase
 		$watchedGroups = $this->watchedConfig->get('watched-commands', []);
 		foreach($watchedGroups as $name => $data){
 			$trueCommands = [];
-			$commandsFixed = [];
 			foreach($data['commands'] as $command){
 				$cmd = $this->getServer()->getCommandMap()->getCommand($command);
 				if($cmd instanceof Command){
 					$trueCommands[] = $cmd->getName();
-					$commandsFixed[] = $cmd->getName();
 				} else {
-					$commandsFixed[] = $command;
+					$this->getLogger()->notice("Failed to find command name $command, assuming it to be real command name");
+					$trueCommands[] = $trueCommands;
 				}
 			}
-			$this->watchedConfig->setNested("watched-commands.$name.commands", $commandsFixed);
+			$this->watchedConfig->setNested("watched-commands.$name.commands", $trueCommands);
 
 			$selected_ = $data['channel'] ?? '<%nothing%>';
 			$selected = $carillonManager->getCarillon($selected_);
