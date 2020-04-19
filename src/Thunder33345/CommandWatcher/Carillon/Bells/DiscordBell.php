@@ -19,7 +19,10 @@ class DiscordBell extends AbstractBell
 
 	public function onTest():bool
 	{
-		if(!class_exists(Webhook::class)) return false;
+		if(!class_exists(Webhook::class)) {
+			$this->getCommandWatcher()->getLogger()->notice('Virion DiscordWebhookAPI not found, discord channel not supported!');
+			return false;
+		}
 		$config = $this->getConfig();
 		$link = $config['webhook'] ?? null;
 		if(!is_string($link)) return false;
