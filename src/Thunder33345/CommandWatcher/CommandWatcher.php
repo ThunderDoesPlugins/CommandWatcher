@@ -45,7 +45,7 @@ class CommandWatcher extends PluginBase
 					$trueCommands[] = $cmd->getName();
 				} else {
 					$this->getLogger()->notice("Failed to find command name $command, assuming it to be real command name");
-					$trueCommands[] = $trueCommands;
+					$trueCommands[] = $command;
 				}
 			}
 			$this->watchedConfig->setNested("watched-commands.$name.commands", $trueCommands);
