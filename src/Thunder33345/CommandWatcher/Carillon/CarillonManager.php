@@ -15,6 +15,7 @@ use Thunder33345\CommandWatcher\CommandWatcher;
 class CarillonManager
 {
 	private $commandWatcher;
+	/** @var Carillon[] */
 	private $carillons = [];
 
 	public function __construct(CommandWatcher $commandWatcher)
@@ -32,6 +33,9 @@ class CarillonManager
 		return $this->carillons[$name] ?? null;
 	}
 
+	/**
+	 * @return Carillon[]
+	 */
 	public function getAllCarillon():array{ return $this->carillons; }
 
 	public function loadFrom(array $config)

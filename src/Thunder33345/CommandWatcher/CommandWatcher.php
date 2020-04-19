@@ -4,14 +4,13 @@ declare(strict_types=1);
 namespace Thunder33345\CommandWatcher;
 
 use pocketmine\command\Command;
-use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use Thunder33345\CommandWatcher\Carillon\Carillon;
 use Thunder33345\CommandWatcher\Carillon\CarillonManager;
 
 /** Created By Thunder33345 **/
-class CommandWatcher extends PluginBase implements Listener
+class CommandWatcher extends PluginBase
 {
 	/** @var CarillonManager */
 	private $carillonManager;
@@ -62,5 +61,15 @@ class CommandWatcher extends PluginBase implements Listener
 			$watcherManager->addWatchers($watcher);
 		}
 		$this->watchedConfig->save();
+		if((bool)$this->watchedConfig->get('debug', false))//hidden debug key
+			$this->getServer()->getCommandMap()->register($this->getName(), new CommandWatcherDebug('cwd', $this));
 	}
+
+	public function getChannelsConfig():Config{ return $this->channelsConfig; }
+
+	public function getWatchedConfig():Config{ return $this->watchedConfig; }
+
+	public function getCarillonManager():CarillonManager{ return $this->carillonManager; }
+
+	public function getWatcherManager():WatcherManager{ return $this->watcherManager; }
 }

@@ -40,4 +40,6 @@ class WatcherManager implements Listener
 			$watcher->testCommand($selectedCommand, $commandEvent);
 		}
 	}
+
+	public function getWatchers(){ return $this->watchers; }
 }

@@ -23,21 +23,14 @@ class Watcher
 		}
 	}
 
-	/*
-	 * API for command event handling
-	 */
 	public function testCommand(Command $command, CommandEvent $commandEvent):void
 	{
 		if(!$this->isWatched($command->getName())) return;
 		$test = $command->testPermissionSilent($commandEvent->getSender());
-		if($test)
-			$this->fireAlert($command, $commandEvent);
+		if($test) $this->fireAlert($command, $commandEvent);
 	}
 
-	public function fireAlert(Command $command, CommandEvent $commandEvent):void
-	{
-		$this->carillon->play($command, $commandEvent);
-	}
+	public function fireAlert(Command $command, CommandEvent $commandEvent):void{ $this->carillon->play($command, $commandEvent); }
 
 	public function isWatched(string $input):bool
 	{
@@ -46,4 +39,11 @@ class Watcher
 		}
 		return false;
 	}
+
+	/*** @return string */
+	public function getName():string{ return $this->name; }
+
+	public function getCarillon():Carillon{ return $this->carillon; }
+
+	public function getCommands():array{ return $this->commands; }
 }

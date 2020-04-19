@@ -2,7 +2,7 @@
 
 templates:
   "#1": "all the templates here serves is just an alias for anchors"
-  "#2": #you can learn more about it in https://learnxinyminutes.com/docs/yaml/
+  "#2": "you can learn more about it in https://learnxinyminutes.com/docs/yaml/"
   logger: &logger
     type: "logger"
     level: "info"
