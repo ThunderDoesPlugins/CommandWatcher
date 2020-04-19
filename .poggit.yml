@@ -1,0 +1,11 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/ThunderDoesPlugins/CommandWatcher
+build-by-default: true
+branches:
+- master
+projects:
+  CommandWatcher:
+    path: ""
+    libs:
+      - src: CortexPE/DiscordWebhookAPI/DiscordWebhookAPI
+        version: ^1.0.0
+...
