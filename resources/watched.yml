@@ -1,0 +1,30 @@
+---
+watched-commands:
+  economy:
+    commands:
+      - "setmoney"
+      - "givemoney"
+      - "takemoney"
+    channel: "value"
+  staff:
+    commands:
+      - "give"
+      - "givekit"
+      - "kill"
+    channel: "value"
+  moderation:
+    commands:
+      - "kick"
+      - "ban"
+      - "muffle"
+      - "mufflechat"
+    channel: "staff"
+  permissions:
+    commands:
+      - "op"
+      - "deop"
+      - "setuperm"
+      - "setgperm"
+      - "setgroup"
+    channel: "permission"
+...

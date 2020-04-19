@@ -1,0 +1,54 @@
+---
+
+templates:
+  "#1": "all the templates here serves is just an alias for anchors"
+  "#2": #you can learn more about it in https://learnxinyminutes.com/docs/yaml/
+  logger: &logger
+    type: "logger"
+    level: "info"
+    message: "[CommandWatcher][{%group}] {%sender.name} used {%command.name}({%command.full})"
+  broadcast_all: &broadcast-all
+    type: "broadcast"
+    message: "[CommandWatcher][{%group}] {%sender.name} used {%command.name}({%command.full})"
+    permission: "false"
+  broadcast_staff: &broadcast-staff
+    <<: *broadcast-all
+    permission: "pocketmine.command.op"
+  file: &file
+    type: "file"
+    prepend: true
+    date: "d/m/Y\\TH:i:s(O)"
+    path: "$/plugin_data/logs/"
+    filename: "commandwatcher.log"
+    message: "[{%date}][{%group}] {%sender.name} used {%command.name}({%command.full})"
+  discord: &discord
+    type: "discord"
+    name: "A Name"
+    avatar: "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+    webhook: "a link"
+    title: "{%command.name}"
+    description: "[{%group}] {%sender.name} used {%command.name}({%command.full})"
+
+channels:
+  value:
+    - <<: *logger
+    - <<: *broadcast-staff
+    - <<: *file
+      filename: "value.log"
+    - <<: *discord
+      webhook: "economylink"
+  staff:
+    - <<: *logger
+    - <<: *broadcast-staff
+    - <<: *file
+      filename: "staff.log"
+    - <<: *discord
+      webhook: "stafflink"
+  permission:
+    - <<: *logger
+    - <<: *broadcast-staff
+    - <<: *file
+      filename: "permission.log"
+    - <<: *discord
+      webhook: "permissionlog"
+...

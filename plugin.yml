@@ -1,0 +1,8 @@
+{
+  "name": "CommandWatcher",
+  "main": "Thunder33345\\CommandWatcher\\CommandWatcher",
+  "author": "Thunder33345",
+  "website": "https://github.com/ThunderDoesPlugins/CommandWatcher",
+  "version": "0.0.2",
+  "api": "3.0.0"
+}
